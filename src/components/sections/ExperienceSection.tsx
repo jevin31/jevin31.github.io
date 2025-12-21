@@ -45,7 +45,7 @@ function TimelineItem({
         className={`absolute left-0 top-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
           isInView
             ? "bg-primary border-primary"
-            : "bg-card border-border"
+            : "bg-background border-border"
         }`}
       >
         {item.type === "work" ? (
@@ -55,19 +55,8 @@ function TimelineItem({
         )}
       </div>
 
-      {/* Pulse effect on marker */}
-      {isInView && (
-        <div className="absolute left-0 top-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-primary/30 animate-ping" />
-      )}
-
-      {/* Content card */}
-      <div
-        className={`p-4 sm:p-6 rounded-xl bg-card border transition-all duration-500 ${
-          isInView
-            ? "border-primary/30 shadow-lg"
-            : "border-border"
-        }`}
-      >
+      {/* Content */}
+      <div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
           <h3 className="text-base sm:text-lg font-semibold text-foreground">
             {item.title}
