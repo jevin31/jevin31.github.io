@@ -148,21 +148,21 @@ export function ContactSection() {
                 You can also find me on these platforms. Let's connect and build
                 something amazing together!
               </p>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                 {socialLinks.map(({ icon: Icon, href, label }, index) => (
                   <a
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group flex items-center gap-3 px-4 py-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-md duration-500 ${
+                    className={`group flex items-center gap-2 px-3 py-2 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-md duration-500 ${
                       infoInView
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-5"
                     }`}
                     style={{ transitionDelay: `${300 + index * 100}ms` }}
                   >
-                    <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
                     <span className="text-sm font-medium text-foreground">
                       {label}
                     </span>
