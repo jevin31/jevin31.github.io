@@ -32,7 +32,7 @@ function TimelineItem({
   return (
     <div
       ref={ref}
-      className={`relative pl-8 sm:pl-12 pb-12 last:pb-0 transition-all duration-700 ${
+      className={`relative pl-8 sm:pl-12 pb-8 last:pb-0 transition-all duration-700 ${
         isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
@@ -42,7 +42,7 @@ function TimelineItem({
 
       {/* Timeline marker */}
       <div
-        className={`absolute left-0 top-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
+        className={`absolute left-0 top-4 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
           isInView
             ? "bg-primary border-primary"
             : "bg-background border-border"
@@ -55,8 +55,8 @@ function TimelineItem({
         )}
       </div>
 
-      {/* Content */}
-      <div>
+      {/* Content wrapped in rectangle */}
+      <div className="p-4 sm:p-5 rounded-xl border border-border/50 bg-card/50 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
           <h3 className="text-base sm:text-lg font-semibold text-foreground">
             {item.title}

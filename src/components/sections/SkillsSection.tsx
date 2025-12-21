@@ -47,11 +47,11 @@ export function SkillsSection() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
             {skillCategories.map((category, categoryIndex) => (
               <div
                 key={category.title}
-                className={`transition-all duration-700 ${
+                className={`p-6 rounded-xl border border-border/50 bg-card/50 transition-all duration-700 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 ${
                   isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-10"
@@ -65,7 +65,7 @@ export function SkillsSection() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1.5 text-sm font-medium rounded-md bg-secondary text-secondary-foreground"
+                      className="px-3 py-1.5 text-sm font-medium rounded-md bg-secondary text-secondary-foreground transition-all duration-200 hover:scale-105 hover:bg-primary/20 hover:text-primary cursor-default"
                     >
                       {skill}
                     </span>
