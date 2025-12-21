@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export function ContactSection() {
   const { toast } = useToast();
@@ -12,6 +13,16 @@ export function ContactSection() {
     name: "",
     email: "",
     message: "",
+  });
+
+  const { ref: headerRef, isInView: headerInView } = useScrollAnimation<HTMLDivElement>({
+    threshold: 0.3,
+  });
+  const { ref: formRef, isInView: formInView } = useScrollAnimation<HTMLFormElement>({
+    threshold: 0.2,
+  });
+  const { ref: infoRef, isInView: infoInView } = useScrollAnimation<HTMLDivElement>({
+    threshold: 0.2,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -47,7 +58,12 @@ export function ContactSection() {
     <section id="contact" className="py-20 lg:py-32 bg-secondary/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div
+            ref={headerRef}
+            className={`text-center mb-16 transition-all duration-700 ${
+              headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+          >
             <span className="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-primary/10 text-primary">
               Contact
             </span>
@@ -62,7 +78,13 @@ export function ContactSection() {
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className={`space-y-6 transition-all duration-700 ${
+                formInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+              }`}
+            >
               <div>
                 <Input
                   name="name"
@@ -113,22 +135,32 @@ export function ContactSection() {
             </form>
 
             {/* Contact Info */}
-            <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
+            <div
+              ref={infoRef}
+              className={`flex flex-col justify-center items-center lg:items-start text-center lg:text-left transition-all duration-700 delay-150 ${
+                infoInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+              }`}
+            >
               <h3 className="text-xl font-semibold text-foreground mb-4">
                 Other ways to connect
               </h3>
               <p className="text-muted-foreground mb-8">
-                You can also find me on these platforms. Let's connect and build 
+                You can also find me on these platforms. Let's connect and build
                 something amazing together!
               </p>
               <div className="flex gap-4">
-                {socialLinks.map(({ icon: Icon, href, label }) => (
+                {socialLinks.map(({ icon: Icon, href, label }, index) => (
                   <a
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-3 px-4 py-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-md"
+                    className={`group flex items-center gap-3 px-4 py-3 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-md duration-500 ${
+                      infoInView
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-5"
+                    }`}
+                    style={{ transitionDelay: `${300 + index * 100}ms` }}
                   >
                     <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                     <span className="text-sm font-medium text-foreground">
