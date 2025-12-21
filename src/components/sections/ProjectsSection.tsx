@@ -53,9 +53,9 @@ export const projects = [
 
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   return (
-    <div className="group">
+    <div className="group p-4 rounded-xl border border-border/50 bg-card/50 transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
       <Link to={`/project/${project.id}`} className="block">
-        <div className="relative overflow-hidden rounded-xl mb-4">
+        <div className="relative overflow-hidden rounded-lg mb-4">
           <img
             src={project.image}
             alt={project.title}
