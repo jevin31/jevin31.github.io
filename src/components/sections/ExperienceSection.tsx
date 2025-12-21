@@ -1,6 +1,7 @@
 import { Briefcase, GraduationCap } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const experiences = [
+const timelineItems = [
   {
     type: "work",
     title: "Software Development Intern",
@@ -9,9 +10,6 @@ const experiences = [
     description:
       "Developing web applications using modern frameworks, collaborating with senior developers, and contributing to production codebases.",
   },
-];
-
-const education = [
   {
     type: "education",
     title: "BSc in Computer Science",
@@ -22,14 +20,88 @@ const education = [
   },
 ];
 
+function TimelineItem({
+  item,
+  index,
+}: {
+  item: typeof timelineItems[0];
+  index: number;
+}) {
+  const { ref, isInView } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+
+  return (
+    <div
+      ref={ref}
+      className={`relative pl-8 sm:pl-12 pb-12 last:pb-0 transition-all duration-700 ${
+        isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+      }`}
+      style={{ transitionDelay: `${index * 150}ms` }}
+    >
+      {/* Timeline line */}
+      <div className="absolute left-[11px] sm:left-[15px] top-0 bottom-0 w-px bg-border" />
+
+      {/* Timeline marker */}
+      <div
+        className={`absolute left-0 top-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
+          isInView
+            ? "bg-primary border-primary"
+            : "bg-card border-border"
+        }`}
+      >
+        {item.type === "work" ? (
+          <Briefcase className={`h-3 w-3 sm:h-4 sm:w-4 transition-colors ${isInView ? "text-primary-foreground" : "text-muted-foreground"}`} />
+        ) : (
+          <GraduationCap className={`h-3 w-3 sm:h-4 sm:w-4 transition-colors ${isInView ? "text-primary-foreground" : "text-muted-foreground"}`} />
+        )}
+      </div>
+
+      {/* Pulse effect on marker */}
+      {isInView && (
+        <div className="absolute left-0 top-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-primary/30 animate-ping" />
+      )}
+
+      {/* Content card */}
+      <div
+        className={`p-4 sm:p-6 rounded-xl bg-card border transition-all duration-500 ${
+          isInView
+            ? "border-primary/30 shadow-lg"
+            : "border-border"
+        }`}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
+          <h3 className="text-base sm:text-lg font-semibold text-foreground">
+            {item.title}
+          </h3>
+          <span className="text-xs sm:text-sm font-medium text-primary whitespace-nowrap">
+            {item.period}
+          </span>
+        </div>
+        <p className="text-muted-foreground font-medium mb-2 text-sm sm:text-base">
+          {item.organization}
+        </p>
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function ExperienceSection() {
-  const timeline = [...experiences, ...education];
+  const { ref: headerRef, isInView: headerInView } = useScrollAnimation<HTMLDivElement>({
+    threshold: 0.3,
+  });
 
   return (
     <section id="experience" className="py-20 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+        <div className="max-w-3xl mx-auto">
+          <div
+            ref={headerRef}
+            className={`text-center mb-16 transition-all duration-700 ${
+              headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+          >
             <span className="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-primary/10 text-primary">
               Journey
             </span>
@@ -37,50 +109,16 @@ export function ExperienceSection() {
               Experience & Education
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              My professional journey and academic background that shaped my 
+              My professional journey and academic background that shaped my
               skills and passion for technology.
             </p>
           </div>
 
           {/* Timeline */}
           <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-border" />
-
-            <div className="space-y-8">
-              {timeline.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative pl-20"
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 w-16 h-16 rounded-full bg-card border-2 border-primary flex items-center justify-center">
-                    {item.type === "work" ? (
-                      <Briefcase className="h-6 w-6 text-primary" />
-                    ) : (
-                      <GraduationCap className="h-6 w-6 text-primary" />
-                    )}
-                  </div>
-
-                  <div className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-all hover:shadow-lg">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                      <h3 className="text-lg font-semibold text-foreground">
-                        {item.title}
-                      </h3>
-                      <span className="text-sm font-medium text-primary">
-                        {item.period}
-                      </span>
-                    </div>
-                    <p className="text-muted-foreground font-medium mb-2">
-                      {item.organization}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {timelineItems.map((item, index) => (
+              <TimelineItem key={index} item={item} index={index} />
+            ))}
           </div>
         </div>
       </div>

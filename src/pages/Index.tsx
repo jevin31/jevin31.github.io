@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Navbar } from "@/components/Navbar";
+import { FloatingNav } from "@/components/FloatingNav";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
@@ -29,9 +29,9 @@ const Index = () => {
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://johndoe.dev" />
       </Helmet>
-      
+
       <div className="min-h-screen bg-background">
-        <Navbar />
+        <FloatingNav />
         <main>
           <HeroSection />
           <AboutSection />
