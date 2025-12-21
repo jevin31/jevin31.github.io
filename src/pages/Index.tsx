@@ -12,10 +12,10 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>John Doe | Software Developer & CS Student Portfolio</title>
+        <title>Bhovanen Murday | Portfolio</title>
         <meta
           name="description"
-          content="Portfolio of John Doe, a Computer Science student and software developer. Showcasing projects in web development, AI, and software engineering."
+          content="Portfolio of Bhovanen Murday, a Computer Science student and software developer. Showcasing projects in web development, AI, and software engineering."
         />
         <meta
           name="keywords"

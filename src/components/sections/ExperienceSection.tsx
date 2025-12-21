@@ -6,15 +6,15 @@ const timelineItems = [
     type: "work",
     title: "Software Development Intern",
     organization: "Astek Mauritius",
-    period: "June 2024 - Present",
+    period: "Oct 2024 - Dec 2024",
     description:
       "Developing web applications using modern frameworks, collaborating with senior developers, and contributing to production codebases.",
   },
   {
     type: "education",
-    title: "BSc in Computer Science",
+    title: "BSc (Hons) in Computer Science",
     organization: "University of Mauritius",
-    period: "2021 - 2025",
+    period: "Jun 2023 - Present",
     description:
       "Focusing on software engineering, algorithms, and artificial intelligence. Active member of the Computer Science Society.",
   },

@@ -49,13 +49,13 @@ export function ContactSection() {
   };
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+    { icon: Github, href: "https://github.com/jevin31", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/bhovanen-murday/", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:bhovanen31pro@gmail.com", label: "Email" },
   ];
 
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-secondary/30">
+    <section id="contact" className="py-20 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div

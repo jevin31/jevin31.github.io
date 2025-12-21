@@ -1,6 +1,18 @@
 import { ArrowDown, Download, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import TypingText from "@/components/ui/TypingText";
+
+type TypingTextProps = {
+  text: string;
+  highlightWords?: string[];
+  speed?: number; // ms per character
+  start?: boolean; // when true, begin typing
+  className?: string;
+  cursorClassName?: string;
+};
+
+// TypingText moved to `src/components/ui/TypingText.tsx`
 
 export function HeroSection() {
   const { ref, isInView } = useScrollAnimation<HTMLElement>({ threshold: 0.1 });
@@ -45,7 +57,7 @@ export function HeroSection() {
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            Hi, I'm <span className="text-primary">John Doe</span>
+            Hi, I'm <span className="text-primary">Bhovanen Murday</span>
           </h1>
 
           <p
@@ -60,9 +72,15 @@ export function HeroSection() {
             className={`text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 transition-all duration-700 delay-300 ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
+            aria-live="polite"
           >
-            Building scalable, clean, and impactful software solutions.
-            Passionate about transforming ideas into elegant digital experiences.
+            <TypingText
+              text="Exploring the World of Tech & AI"
+              highlightWords={["Tech", "AI"]}
+              speed={50}
+              pause={2000}
+              start={isInView}
+            />
           </p>
 
           <div
@@ -97,7 +115,7 @@ export function HeroSection() {
             }`}
           >
             <a
-              href="https://github.com"
+              href="https://github.com/jevin31"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary hover:bg-secondary/80 text-foreground transition-all hover:scale-110"
@@ -105,7 +123,7 @@ export function HeroSection() {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/bhovanen-murday/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary hover:bg-secondary/80 text-foreground transition-all hover:scale-110"
