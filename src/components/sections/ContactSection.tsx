@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { supabase } from "@/lib/supabase";
 
 export function ContactSection() {
   const { toast } = useToast();
@@ -25,21 +26,52 @@ export function ContactSection() {
     threshold: 0.2,
   });
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+
+  //   // Simulate form submission
+  //   await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  //   toast({
+  //     title: "Message sent!",
+  //     description: "Thank you for reaching out. I'll get back to you soon.",
+  //   });
+
+  //   setFormData({ name: "", email: "", message: "" });
+  //   setIsSubmitting(false);
+  // };
+
+  // Replace the simulated submission handler with:
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const { name, email, message } = formData;
 
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
+    const { error } = await supabase
+      .from('messages')
+      .insert([{ name, email, message }]);
 
-    setFormData({ name: "", email: "", message: "" });
+    if (error) {
+      toast({
+        title: 'Error',
+        description: 'Could not send message. Please try again later.',
+        variant: 'destructive',
+      });
+    } else {
+      toast({
+        title: 'Message sent!',
+        description: "Thanks — I'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', message: '' });
+    }
+
     setIsSubmitting(false);
   };
+
+
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -60,9 +92,8 @@ export function ContactSection() {
         <div className="max-w-4xl mx-auto">
           <div
             ref={headerRef}
-            className={`text-center mb-16 transition-all duration-700 ${
-              headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className={`text-center mb-16 transition-all duration-700 ${headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
           >
             <span className="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-primary/10 text-primary">
               Contact
@@ -81,9 +112,8 @@ export function ContactSection() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className={`space-y-6 transition-all duration-700 ${
-                formInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-              }`}
+              className={`space-y-6 transition-all duration-700 ${formInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                }`}
             >
               <div>
                 <Input
@@ -137,9 +167,8 @@ export function ContactSection() {
             {/* Contact Info */}
             <div
               ref={infoRef}
-              className={`flex flex-col justify-center items-center lg:items-start text-center lg:text-left transition-all duration-700 delay-150 ${
-                infoInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-              }`}
+              className={`flex flex-col justify-center items-center lg:items-start text-center lg:text-left transition-all duration-700 delay-150 ${infoInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+                }`}
             >
               <h3 className="text-xl font-semibold text-foreground mb-4">
                 Other ways to connect
@@ -155,11 +184,10 @@ export function ContactSection() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group flex items-center gap-2 px-3 py-2 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-md duration-500 ${
-                      infoInView
+                    className={`group flex items-center gap-2 px-3 py-2 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-md duration-500 ${infoInView
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-5"
-                    }`}
+                      }`}
                     style={{ transitionDelay: `${300 + index * 100}ms` }}
                   >
                     <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />

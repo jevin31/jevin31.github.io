@@ -7,15 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node / build outputs
+node_modules/
+dist/
+dist-ssr/
 *.local
 
+# Environment files (contains secrets) — do NOT commit these
+.env
+.env.local
+.env.*.local
+.env.*
+# Keep an example env file tracked if you have one
+!.env.example
+
 # Editor directories and files
-.vscode/*
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
