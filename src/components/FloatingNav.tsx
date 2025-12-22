@@ -65,7 +65,7 @@ export function FloatingNav() {
                   >
                     <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                     {isActive && (
-                      <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
+                      <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
                     )}
                   </a>
                 </TooltipTrigger>
