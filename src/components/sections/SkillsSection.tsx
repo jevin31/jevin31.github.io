@@ -7,7 +7,7 @@ const skillCategories = [
   },
   {
     title: "Web & Software Development",
-    skills: ["React", "Next.js", "Node.js", "Angular", "REST APIs", "GraphQL"],
+    skills: ["React", "Next.js", "Node.js", "Angular", "REST APIs", "GraphQL", "Spring Boot"],
   },
   {
     title: "Tools & Technologies",

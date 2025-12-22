@@ -4,19 +4,19 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const timelineItems = [
   {
     type: "work",
-    title: "Software Development Intern",
-    organization: "Astek Mauritius",
-    period: "Oct 2024 - Dec 2024",
+    title: "Software Developer Intern",
+    organization: "Astek Mauritius · Internship · Ebene, Mauritius · Hybrid",
+    period: "Oct 2024 - Dec 2024 · 3 mos",
     description:
-      "Developing web applications using modern frameworks, collaborating with senior developers, and contributing to production codebases.",
+      "During a 10-week internship at Astek Mauritius I worked on a development team building Aspark, an internal parking-management web app. I contributed to full‑stack development using Angular 18, Java 21, and Spring Boot 3, helped design UI flows in Figma, and validated APIs using Postman.",
   },
   {
     type: "education",
-    title: "BSc (Hons) in Computer Science",
+    title: "Bachelor of Science (BSc) — Computer Science",
     organization: "University of Mauritius",
-    period: "Jun 2023 - Present",
+    period: "Jun 2023 - Jun 2026",
     description:
-      "Focusing on software engineering, algorithms, and artificial intelligence. Active member of the Computer Science Society.",
+      "Undergraduate program focused on software engineering, algorithms, and artificial intelligence.",
   },
 ];
 

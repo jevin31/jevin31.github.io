@@ -14,40 +14,31 @@ import type { CarouselApi } from "@/components/ui/carousel";
 
 export const projects = [
   {
-    id: "e-commerce-platform",
-    title: "E-Commerce Platform",
+    id: "polaris-ai-travel-companion",
+    title: "Polaris - Your AI Travel Companion",
     description:
-      "A full-stack e-commerce solution with user authentication, payment processing, and inventory management. Built with modern technologies for scalability and performance.",
-    techStack: ["React", "Node.js", "PostgreSQL", "Stripe"],
-    githubUrl: "https://github.com",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+      "Polaris is an AI-powered navigation app that transforms exploration with adventure, gamification, and accessibility features. Built to make travel delightful and inclusive, it was developed for the UoM AppCup 2025 and won first place.",
+    techStack: ["Kotlin", "SQL Delight", "Supabase", "Google Maps API", "AI", "AR"],
+    githubUrl: "https://github.com/TeamAegis/Polaris",
+    image: "./../../public/polaris/polaris1.jpeg",
   },
   {
-    id: "ai-task-manager",
-    title: "AI Task Manager",
+    id: "dermai-skin-care-companion",
+    title: "DermAI - Your Skin Care Companion",
     description:
-      "An intelligent task management app that uses ML to prioritize and categorize tasks automatically. Features natural language processing for smart task creation.",
-    techStack: ["Python", "TensorFlow", "React", "FastAPI"],
-    githubUrl: "https://github.com",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop",
+      "DermAI is an innovative healthcare application. It connects patients with dermatologists and provides AI-driven image classification for skin conditions, instant preliminary diagnoses, a health guidance chatbot, appointment scheduling, and secure video consultations to make dermatological care accessible from anywhere.",
+    techStack: ["Dart", "Flutter", "Python", "TensorFlow", "Gemini AI", "Flask"],
+    githubUrl: "https://github.com/The-Vegapunks/dermai_flutter",
+    image: "./../../public/dermai/dermai1.png",
   },
   {
-    id: "real-time-chat-app",
-    title: "Real-time Chat App",
+    id: "aspark-parking-management",
+    title: "Aspark - Parking Management System",
     description:
-      "A scalable chat application with WebSocket support, message encryption, and file sharing capabilities. Supports group chats and direct messaging.",
-    techStack: ["TypeScript", "Socket.io", "Redis", "MongoDB"],
-    githubUrl: "https://github.com",
-    image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=600&h=400&fit=crop",
-  },
-  {
-    id: "portfolio-analytics-dashboard",
-    title: "Portfolio Analytics Dashboard",
-    description:
-      "A data visualization dashboard for tracking investment portfolios with real-time market data. Features interactive charts and performance metrics.",
-    techStack: ["Next.js", "D3.js", "Python", "AWS"],
-    githubUrl: "https://github.com",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      "Developed during a 10-week internship at Astek Mauritius, Aspark is an internal web application for parking space reservation and management. I worked on full-stack features using Angular 18, Java 21, and Spring Boot 3, contributed to UI design in Figma, and performed API testing with Postman to ensure reliable endpoints.",
+    techStack: ["Angular 18", "Java 21", "Spring Boot 3", "Postman", "PostgreSQL", "GitLab"],
+    // githubUrl: "https://github.com/jevin31/aspark",
+    image: "./../../public/aspark/aspark1.png",
   },
 ];
 
@@ -128,9 +119,8 @@ export function ProjectsSection() {
         <div className="max-w-6xl mx-auto">
           <div
             ref={headerRef}
-            className={`text-center mb-16 transition-all duration-700 ${
-              headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className={`text-center mb-16 transition-all duration-700 ${headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
           >
             <span className="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-primary/10 text-primary">
               Projects
@@ -146,9 +136,8 @@ export function ProjectsSection() {
 
           <div
             ref={carouselRef}
-            className={`transition-all duration-700 ${
-              carouselInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className={`transition-all duration-700 ${carouselInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
           >
             <Carousel
               setApi={setApi}
