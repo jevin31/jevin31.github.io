@@ -19,7 +19,7 @@ export function HeroSection() {
 
   const handleDownloadResume = () => {
     const link = document.createElement("a");
-    link.href = "./../../public/resume/resume.pdf";
+    link.href = "./../../resume/resume.pdf";
     link.download = "Resume.pdf";
     link.click();
   };
