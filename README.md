@@ -71,3 +71,11 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+
+## How to deploy changes to the code after edit
+
+1. Edit code, commit and push to main.
+2. `npm run build`
+3. `npm run deploy`
+4. Refresh
