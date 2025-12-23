@@ -20,7 +20,7 @@ export const projects = [
       "Polaris is an AI-powered navigation app that transforms exploration with adventure, gamification, and accessibility features. Built to make travel delightful and inclusive, it was developed for the UoM AppCup 2025 and won first place.",
     techStack: ["Kotlin", "SQL Delight", "Supabase", "Google Maps API", "AI", "AR"],
     githubUrl: "https://github.com/TeamAegis/Polaris",
-    image: "./../../public/polaris/polaris1.jpeg",
+    image: "./../../polaris/polaris1.jpeg",
   },
   {
     id: "dermai-skin-care-companion",
@@ -29,7 +29,7 @@ export const projects = [
       "DermAI is an innovative healthcare application. It connects patients with dermatologists and provides AI-driven image classification for skin conditions, instant preliminary diagnoses, a health guidance chatbot, appointment scheduling, and secure video consultations to make dermatological care accessible from anywhere.",
     techStack: ["Dart", "Flutter", "Python", "TensorFlow", "Gemini AI", "Flask"],
     githubUrl: "https://github.com/The-Vegapunks/dermai_flutter",
-    image: "./../../public/dermai/dermai1.png",
+    image: "./../../dermai/dermai1.png",
   },
   {
     id: "aspark-parking-management",
@@ -38,7 +38,7 @@ export const projects = [
       "Developed during a 10-week internship at Astek Mauritius, Aspark is an internal web application for parking space reservation and management. I worked on full-stack features using Angular 18, Java 21, and Spring Boot 3, contributed to UI design in Figma, and performed API testing with Postman to ensure reliable endpoints.",
     techStack: ["Angular 18", "Java 21", "Spring Boot 3", "Postman", "PostgreSQL", "GitLab"],
     // githubUrl: "https://github.com/jevin31/aspark",
-    image: "./../../public/aspark/aspark1.png",
+    image: "./../../aspark/aspark1.png",
   },
 ];
 
