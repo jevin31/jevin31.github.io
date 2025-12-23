@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { supabase } from "@/lib/supabase";
+// Using Formspree for form handling instead of Supabase.
 
 export function ContactSection() {
   const { toast } = useToast();
@@ -26,48 +26,49 @@ export function ContactSection() {
     threshold: 0.2,
   });
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-
-  //   // Simulate form submission
-  //   await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  //   toast({
-  //     title: "Message sent!",
-  //     description: "Thank you for reaching out. I'll get back to you soon.",
-  //   });
-
-  //   setFormData({ name: "", email: "", message: "" });
-  //   setIsSubmitting(false);
-  // };
-
-  // Replace the simulated submission handler with:
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const { name, email, message } = formData;
 
-    const { error } = await supabase
-      .from('messages')
-      .insert([{ name, email, message }]);
+    const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT ||
+      "https://formspree.io/f/your_form_id";
 
-    if (error) {
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (res.ok) {
+        toast({
+          title: "Message sent!",
+          description: "Thanks — I'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const errMsg = data.error || data.message || 'Could not send message. Please try again later.';
+        toast({
+          title: 'Error',
+          description: errMsg,
+          variant: 'destructive',
+        });
+      }
+    } catch (err) {
       toast({
         title: 'Error',
         description: 'Could not send message. Please try again later.',
         variant: 'destructive',
       });
-    } else {
-      toast({
-        title: 'Message sent!',
-        description: "Thanks — I'll get back to you soon.",
-      });
-      setFormData({ name: '', email: '', message: '' });
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
   };
 
 
